@@ -4,7 +4,8 @@ from app1 import views
 urlpatterns = patterns('',
   url(r'^$', views.index, name='index'),
 #  url(r'^$', views.IndexView.as_view(), name='index'),
-  url(r'^(?P<param1>\d+)/$', views.detail, name='detail'),
+  url(r'^new/$', views.new_reservation, name='new_reservation'),
+  url(r'^save/$', views.save_reservation, name='save_reservation'),
 #  url(r'^(?P<pk>\d+)/results/$', views.ResultsView.as_view(), name='results'),
 #  url(r'^(?P<poll_id>\d+)/vote/$', views.vote, name='vote'),
 #

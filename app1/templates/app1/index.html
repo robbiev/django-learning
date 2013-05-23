@@ -1,0 +1,9 @@
+{% if todays_reservations %}
+    <ul>
+    {% for res in todays_reservations %}
+    <li>{{res.choice}} for {{ res.who }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+<p>No reservations yet. <a href="{% url 'app1:new_reservation'%}">Create new</a></p>
+{% endif %}

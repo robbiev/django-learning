@@ -1,0 +1,9 @@
+<h1>new reservation</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'app1:save_reservation' %}" method="post">
+{% csrf_token %}
+{{ form.as_p }}
+<input type="submit" value="Save" />
+</form>

@@ -9,7 +9,7 @@ handler404 = 'app1.views.not_found'
 urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'learning.views.home', name='home'),
-    url(r'^app1/', include('app1.urls')),
+    url(r'^app1/', include('app1.urls', namespace='app1')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
