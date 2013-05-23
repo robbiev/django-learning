@@ -10,7 +10,7 @@ from app1.models import Reservation
 class ReservationForm(ModelForm):
   class Meta:
     model = Reservation 
-    exclude = ['at']
+    fields = ['who', 'choice']
 
 def index(request):
   reservations = Reservation.objects.all()
@@ -20,13 +20,16 @@ def new_reservation(request):
   return render(request, 'app1/new_reservation.html', {'form': ReservationForm()})
 
 def save_reservation(request):
-  #return HttpResponse(request.POST['meh']) 
   form = ReservationForm(request.POST)
-  reservation = form.save(commit=False)
-  reservation.at = timezone.now()
-  reservation.save()
+  if form.is_valid():
+    reservation = form.save(commit=False)
+    reservation.at = timezone.now()
+    reservation.save()
+    return HttpResponseRedirect(reverse('app1:index'))
+  else:
+    return render(request, 'app1/new_reservation.html', {'form': form,
+      'error_message': 'form is not valid'})
 
-  return HttpResponseRedirect(reverse('app1:index'))
 
 def not_found(request):
   return render(request, '404.html', {}, status=404)
